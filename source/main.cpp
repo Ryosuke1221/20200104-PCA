@@ -80,16 +80,16 @@ int main()
 	//https://stackoverflow.com/questions/15138634/eigen-is-there-an-inbuilt-way-to-calculate-sample-covariance
 	//https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance
 	{
-		const int num_devide = rows_Matrix - 1;
-		//const int num_devide = rows_Matrix;
-		Eigen::Matrix<Scalar, Eigen::Dynamic, 1> Data_Matrix_mean_sample(cols_Matrix, 1);
-		Data_Matrix_mean_sample = Data_Matrix.rowwise().sum() * 1. / ((Scalar)num_devide);	//sample mean
+		//const int num_devide = rows_Matrix - 1;	//sample mean
+		const int num_devide = rows_Matrix;
+		Eigen::Matrix<Scalar, 1, Eigen::Dynamic> Data_Matrix_mean_sample(1, cols_Matrix);
+		Data_Matrix_mean_sample = Data_Matrix.colwise().sum() * 1. / ((Scalar)num_devide);	
 
-		cout << "Data_Matrix_mean_sample" << endl;
-		cout << Data_Matrix_mean_sample << endl;
+		//cout << "Data_Matrix_mean_sample" << endl;
+		//cout << Data_Matrix_mean_sample << endl;
 
 		Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Data_Matrix_demean(rows_Matrix, cols_Matrix);
-		Data_Matrix_demean = Data_Matrix.colwise() - Data_Matrix_mean_sample;
+		Data_Matrix_demean = Data_Matrix.rowwise() - Data_Matrix_mean_sample;
 
 		Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Cov_Data_Matrix(cols_Matrix, cols_Matrix);
 		Cov_Data_Matrix = Data_Matrix_demean.transpose() * Data_Matrix_demean / ((Scalar)num_devide);
@@ -103,7 +103,7 @@ int main()
 				Y_Data_Matrix(i, j) = Data_Matrix_demean(i, j) / sqrt(Cov_Data_Matrix(j, j));
 		Cor_Matrix2 = Y_Data_Matrix.transpose() * Y_Data_Matrix / ((Scalar)num_devide);
 		cout << "Correlation matrix" << endl;
-		cout << Cor_Matrix << endl;
+		//cout << Cor_Matrix << endl;
 		cout << Cor_Matrix2 << endl;
 		//{
 		//	int aa;
@@ -190,7 +190,7 @@ int main()
 
 		int index_criterion;
 		index_criterion = 0;//0,1,2,...
-		cout << "principal component:" << index_criterion << endl;
+		cout << "principal component num:" << index_criterion << endl;
 
 		Scalar tmp;
 		int tmp_index;

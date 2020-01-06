@@ -1,8 +1,6 @@
 #include <Eigen/Dense>
 #include <iostream>
 #include <fstream>
-
-//#include <Eigen/Core>
 #include "TimeString.h"
 
 int main()

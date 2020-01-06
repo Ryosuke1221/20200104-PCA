@@ -1,30 +1,10 @@
 #pragma once
-//#include"winsock2.h"
-
 #include<iostream>
 #include<windows.h>
 #include<string>
 #include<sstream>
 #include<vector>
-
 #include<typeinfo>
-
-//#pragma comment(lib,"opengl32.lib")	
-//#include <vtkAutoInit.h>
-//VTK_MODULE_INIT(vtkRenderingOpenGL);
-//VTK_MODULE_INIT(vtkInteractionStyle);
-
-//#pragma comment(lib,"ws2_32.lib")	
-//
-////winsock.h
-//
-//#include"winsock.h"
-//#include"winsock2.h"
-//#pragma comment(lib,"winsock2.lib")	
-
-
-//#pragma comment(lib,"Winsock2.lib")	
-
 
 using namespace std;
 

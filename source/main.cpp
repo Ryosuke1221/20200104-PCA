@@ -184,49 +184,37 @@ int main()
 				+ Data_Matrix.row(index_)(0, 3)) / sum_ << endl;
 		}
 
-		////save data
-		//{
-		//	//make vec_vec
-		//	vector<vector<Scalar>> saved_data_vec_vec;
-		//	for (int i = 0; i < rows_Matrix; i++)
-		//	{
-		//		//sort
-		//		vector<Scalar> saved_data_vec;
+		//save data
+		{
+			//make vec_vec
+			vector<vector<Scalar>> saved_data_vec_vec;
+			for (int i = 0; i < rows_Matrix; i++)
+			{
+				//sort
+				vector<Scalar> saved_data_vec;
 
-		//		int index_ = index_vec[i];
-		//		saved_data_vec.push_back(index_);
-		//		for (int j = 0; j < Data_Matrix.cols(); j++)
-		//			saved_data_vec.push_back(Data_Matrix(index_, j));
-		//		saved_data_vec_vec.push_back(saved_data_vec);
+				int index_ = index_vec[i];
+				saved_data_vec.push_back(index_);
+				for (int j = 0; j < Data_Matrix.cols(); j++)
+					saved_data_vec.push_back(Data_Matrix(index_, j));
+				saved_data_vec_vec.push_back(saved_data_vec);
 
-		//		////PC
-		//		//int index_ = i;
-		//		//saved_data_vec.push_back(index_);
-		//		//for (int j = 0; j < Data_Matrix.cols(); j++)
-		//		//	saved_data_vec.push_back(Z_Data_Matrix(i, j));
-		//		//saved_data_vec_vec.push_back(saved_data_vec);
-		//	}
-		//	//save into file
-		//	{
-		//		std::string filename_save;
-		//		filename_save = "../ShowPCA_" + to_string(index_criterion) + "pc.csv";	//sort
-		//		//filename_save = "../ShowPCA_pc.csv";	//PC
-		//		std::ofstream ofs_save;
-		//		ofs_save.open(filename_save, std::ios::out);
-		//		for (int i = 0; i < saved_data_vec_vec.size(); i++)
-		//		{
-		//			for (int j = 0; j < saved_data_vec_vec[i].size(); j++)
-		//			{
-		//				ofs_save << saved_data_vec_vec[i][j];
-		//				if (j < saved_data_vec_vec[i].size() - 1) ofs_save << ",";
-		//			}
-		//			ofs_save << endl;
-		//		}
-		//	}
-		//}
-
+				////PC
+				//int index_ = i;
+				//saved_data_vec.push_back(index_);
+				//for (int j = 0; j < Data_Matrix.cols(); j++)
+				//	saved_data_vec.push_back(Z_Data_Matrix(i, j));
+				//saved_data_vec_vec.push_back(saved_data_vec);
+			}
+			//save into file
+			{
+				std::string filename_save;
+				filename_save = "../ShowPCA_" + to_string(index_criterion) + "pc.csv";	//sort
+				//filename_save = "../ShowPCA_pc.csv";									//PC
+				CTimeString time_;
+				time_.getCSVFromVecVec(saved_data_vec_vec, filename_save);
+			}
+		}
 	}
-
-	
 	return 0;
 }

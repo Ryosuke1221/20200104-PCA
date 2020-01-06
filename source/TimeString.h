@@ -73,4 +73,21 @@ public:
 		}
 		return all_observation_vec_vec;
 	}
+
+	template<typename T>
+	void getCSVFromVecVec(vector<vector<T>> saved_data_vec_vec, string filename_)
+	{
+		std::ofstream ofs_save;
+		ofs_save.open(filename_, std::ios::out);
+		for (int i = 0; i < saved_data_vec_vec.size(); i++)
+		{
+			for (int j = 0; j < saved_data_vec_vec[i].size(); j++)
+			{
+				ofs_save << saved_data_vec_vec[i][j];
+				if (j < saved_data_vec_vec[i].size() - 1) ofs_save << ",";
+			}
+			ofs_save << endl;
+		}
+	}
+
 };

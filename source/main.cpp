@@ -7,7 +7,6 @@
 int main()
 {
 	typedef float Scalar;
-
 	vector<vector<Scalar>> all_observation_vec_vec;
 
 	//input file to vec_vec

@@ -213,5 +213,3 @@ std::vector<int> CTimeString::find_all(const std::string str, const std::string 
 
 	return result;
 }
-
-

@@ -8,55 +8,12 @@ int main()
 	typedef float Scalar;
 	vector<vector<Scalar>> all_observation_vec_vec;
 
-	//input file to vec_vec
 	{
 		string filename_;
 		filename_ = "../ExPCA.csv";
-
 		CTimeString time_;
-		ifstream ifs_(filename_);
-		string str_;
-		int f_cnt = 0;
-		if (ifs_.fail()) cout << "Error: file could not be read." << endl;
-		else {
-			//naraha
-			while (getline(ifs_, str_)) {		//readed to string from file
-
-				vector<Scalar> one_observation_vec;
-				vector<int> find_vec = time_.find_all(str_, ",");
-
-				one_observation_vec.push_back(stod(str_.substr(0, find_vec[0])));
-				int s_pos = 0;
-				while (s_pos < find_vec.size() - 1)
-				{
-					Scalar value_ = stod(str_.substr(find_vec[s_pos] + 1, find_vec[s_pos + 1] - (find_vec[s_pos] + 1)));
-					one_observation_vec.push_back(value_);
-					s_pos++;
-				}
-				one_observation_vec.push_back(stod(str_.substr(find_vec[s_pos] + 1, str_.size() - (find_vec[s_pos] + 1))));
-
-				all_observation_vec_vec.push_back(one_observation_vec);
-			}
-			ifs_.close();
-		}
+		all_observation_vec_vec = time_.getVecVecFromCSV<Scalar>(filename_);
 	}
-
-	//cout << "make .csv" << endl;
-	//{
-	//	std::string filename_save;
-	//	filename_save = "../ExPCA.csv";
-	//	std::ofstream ofs_save;
-	//	ofs_save.open(filename_save, std::ios::out);
-	//	for (int i = 0; i < all_observation_vec_vec.size(); i++)
-	//	{
-	//		for (int j = 0; j < all_observation_vec_vec[i].size(); j++)
-	//		{
-	//			ofs_save << all_observation_vec_vec[i][j];
-	//			if (j < all_observation_vec_vec[i].size() - 1) ofs_save << ",";
-	//		}
-	//		ofs_save << endl;
-	//	}
-	//}
 
 	const int rows_Matrix = all_observation_vec_vec.size();
 	const int cols_Matrix = all_observation_vec_vec[0].size();

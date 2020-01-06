@@ -80,8 +80,9 @@ int main()
 	//https://stackoverflow.com/questions/15138634/eigen-is-there-an-inbuilt-way-to-calculate-sample-covariance
 	//https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance
 	{
+		const int num_devide = rows_Matrix - 1;
 		Eigen::Matrix<Scalar, Eigen::Dynamic, 1> Data_Matrix_mean_sample(cols_Matrix, 1);
-		Data_Matrix_mean_sample = Data_Matrix.rowwise().sum() * 1. / ((Scalar)(rows_Matrix - 1));	//sample mean
+		Data_Matrix_mean_sample = Data_Matrix.rowwise().sum() * 1. / ((Scalar)num_devide);	//sample mean
 
 		Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Data_Matrix_demean(rows_Matrix, cols_Matrix);
 		Data_Matrix_demean = Data_Matrix.colwise() - Data_Matrix_mean_sample;

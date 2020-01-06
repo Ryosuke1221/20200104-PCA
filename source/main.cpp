@@ -81,14 +81,18 @@ int main()
 	//https://en.wikipedia.org/wiki/Sample_mean_and_covariance#Sample_covariance
 	{
 		const int num_devide = rows_Matrix - 1;
+		//const int num_devide = rows_Matrix;
 		Eigen::Matrix<Scalar, Eigen::Dynamic, 1> Data_Matrix_mean_sample(cols_Matrix, 1);
 		Data_Matrix_mean_sample = Data_Matrix.rowwise().sum() * 1. / ((Scalar)num_devide);	//sample mean
+
+		cout << "Data_Matrix_mean_sample" << endl;
+		cout << Data_Matrix_mean_sample << endl;
 
 		Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Data_Matrix_demean(rows_Matrix, cols_Matrix);
 		Data_Matrix_demean = Data_Matrix.colwise() - Data_Matrix_mean_sample;
 
 		Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic> Cov_Data_Matrix(cols_Matrix, cols_Matrix);
-		Cov_Data_Matrix = Data_Matrix_demean.transpose() * Data_Matrix_demean;
+		Cov_Data_Matrix = Data_Matrix_demean.transpose() * Data_Matrix_demean / ((Scalar)num_devide);
 
 		for (int i = 0; i < cols_Matrix; i++)
 			for (int j = 0; j < cols_Matrix; j++)
@@ -97,9 +101,9 @@ int main()
 		for (int i = 0; i < rows_Matrix; i++)
 			for (int j = 0; j < cols_Matrix; j++)
 				Y_Data_Matrix(i, j) = Data_Matrix_demean(i, j) / sqrt(Cov_Data_Matrix(j, j));
-		Cor_Matrix2 = Y_Data_Matrix.transpose() * Y_Data_Matrix;
+		Cor_Matrix2 = Y_Data_Matrix.transpose() * Y_Data_Matrix / ((Scalar)num_devide);
 		cout << "Correlation matrix" << endl;
-		//cout << Cor_Matrix << endl;
+		cout << Cor_Matrix << endl;
 		cout << Cor_Matrix2 << endl;
 		//{
 		//	int aa;

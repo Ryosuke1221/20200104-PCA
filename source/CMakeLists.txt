@@ -25,19 +25,20 @@ set_property( DIRECTORY PROPERTY VS_STARTUP_PROJECT "project" )
 
 find_package( PCL 1.8 REQUIRED )
 
+include_directories("${CMAKE_SOURCE_DIR}/eigen-3.3.7")
 
 
 if( PCL_FOUND )
 
 	# [C/C++]>[General]>[Additional Include Directories]
 
-	include_directories( ${PCL_INCLUDE_DIRS} )
+	##include_directories( ${PCL_INCLUDE_DIRS} )
 
 
 
 	# [C/C++]>[Preprocessor]>[Preprocessor Definitions]
 
-	add_definitions( ${PCL_DEFINITIONS} )
+	#add_definitions( ${PCL_DEFINITIONS} )
 
 
   	# For Use Not PreCompiled Features
@@ -47,11 +48,11 @@ if( PCL_FOUND )
 
 	# [Linker]>[General]>[Additional Library Directories]
 
-	link_directories( ${PCL_LIBRARY_DIRS} )
+	#link_directories( ${PCL_LIBRARY_DIRS} )
 
 
 	# [Linker]>[Input]>[Additional Dependencies]
 
-	target_link_libraries( project ${PCL_LIBRARIES} )
+	#target_link_libraries( project ${PCL_LIBRARIES} )
 
 endif()
